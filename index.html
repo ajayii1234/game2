@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Rock, Paper, Scissors</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+.game {
+    margin-top: 50px;
+}
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <div class="game">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+        <p id="result"></p>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const buttons = document.querySelectorAll('button');
+const resultElement = document.getElementById('result');
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        const playerChoice = button.id;
+        const computerChoice = getComputerChoice();
+        const result = determineWinner(playerChoice, computerChoice);
+        resultElement.textContent = result;
+    });
+});
+
+function getComputerChoice() {
+    const choices = ['rock', 'paper', 'scissors'];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
+}
+
+function determineWinner(player, computer) {
+    if (player === computer) {
+        return 'It\'s a tie!';
+    } else if (
+        (player === 'rock' && computer === 'scissors') ||
+        (player === 'paper' && computer === 'rock') ||
+        (player === 'scissors' && computer === 'paper')
+    ) {
+        return 'You win!';
+    } else {
+        return 'Computer wins!';
+    }
+}
+
+    </script>
+</body>
+</html>
